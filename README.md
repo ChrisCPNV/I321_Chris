@@ -4,7 +4,7 @@
 - **Chris Brandt**
 
 ## **Dependencies**
-- **Express** `v5.1.0+`
+- **Express** `v5.1.0`
 - **Node.js** `v22.18.0`
 - **Npm** `v10.9.3`
 
