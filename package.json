@@ -1,0 +1,22 @@
+{
+  "name": "i321_chris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisCPNV/I321_Chris.git"
+  },
+  "author": "Chris Brandt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisCPNV/I321_Chris/issues"
+  },
+  "homepage": "https://github.com/ChrisCPNV/I321_Chris#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
