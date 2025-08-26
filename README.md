@@ -12,11 +12,11 @@
 ### **Install Dependencies**
 Run the following command to install all necessary dependencies:  
 ```bash
-npm ci
+npm install
 ```
 To run the exemple app:
 ```bash
-node start
+node app.js
 ```
 
 ## **License**
