@@ -1,0 +1,29 @@
+@startuml
+actor Client
+participant "Global Router \n (index.js)"
+participant "Product Router \n (pizza.js)"
+participant "Controller \n (pizzasController.js)"
+participant "Entity \n Product (pizza.js)"
+participant "ErrorHandler \n (errorHandler.js)"
+database "MySQL DB" as DB
+
+== Product Creation Flow ==
+
+Client --> "Global Router \n (index.js)": POST /api/v1/pizzas
+"Global Router \n (index.js)" --> "Product Router \n (pizza.js)": Delegates to /pizzas routes
+"Product Router \n (pizza.js)" --> "Controller \n (pizzasController.js)": createPizza(req)
+"Controller \n (pizzasController.js)" --> "Entity \n Product (pizza.js)": Pizza.create{(name,price,category)}
+
+alt Validation error
+    "Entity \n Product (pizza.js)" --> "ErrorHandler \n (errorHandler.js)": SequelizeValidationError
+    "ErrorHandler \n (errorHandler.js)" --> Client: 400 Bad Request + validation messages
+else Success
+    "Entity \n Product (pizza.js)" -> DB: INSERT INTO products (name, price, category) VALUES(...)
+    DB --> "Entity \n Product (pizza.js)": Ack (row inserted)
+    "Entity \n Product (pizza.js)" --> "Controller \n (pizzasController.js)": Success
+    "Controller \n (pizzasController.js)" --> Client: 200 OK + {"success":true, "message":"Product created successfully"}
+end
+
+== Error Case ==
+"ErrorHandler \n (errorHandler.js)" --> Client: 500 Internal Server Error (unexpected)
+@enduml
